@@ -4,6 +4,7 @@ var program = require("commander");
 var prompt = require("cli-prompt");
 var Table = require("cli-table");
 var fs = require("fs");
+var colors = require('colors');
 
 var ImpConfig = require("../lib/impConfig.js");
 var config = new ImpConfig();
@@ -140,8 +141,8 @@ config.init(["apiKey"], function(err, success) {
         var powerState = null;
         var assignedState = null;
 
-        if ("online" in program) powerState = "online";
-        if ("offline" in program) powerState = "offline";
+        if ("online" in program) powerState = "online".green;
+        if ("offline" in program) powerState = "offline".inverse;
         if ("assigned" in program) assignedState = true;
         if ("unassigned" in program) assignedState = false;
 
