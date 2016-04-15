@@ -35,8 +35,8 @@
   "homepage": "https://github.com/ElectricImpSampleCode/build-cli",
   "dependencies": {
     "cli-prompt": "^0.4.2",
-    "cli-table": "^0.3.1",
-    "colors": "^1.1.0",
+    "cli-table2": "^0.2.0",
+    "colors": "^1.1.2",
     "commander": "^2.8.1",
     "imp-api": "^0.2.8",
     "osenv": "^0.1.1"
