@@ -2,7 +2,7 @@
 
 var program = require("commander");
 var prompt = require("cli-prompt");
-var Table = require("cli-table");
+var Table = require("cli-table2");
 var fs = require("fs");
 var colors = require('colors');
 
