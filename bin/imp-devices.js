@@ -45,7 +45,7 @@ config.init(["apiKey"], function(err, success) {
             console.log("   imp devices -a [device_id]")
             return;
         }
-    
+
         imp.assignDevice(program.add, config.get("modelId"), function(err,data) {
             if (err) {
                 console.log("ERROR: " + err.message_short);
@@ -141,8 +141,8 @@ config.init(["apiKey"], function(err, success) {
         var powerState = null;
         var assignedState = null;
 
-        if ("online" in program) powerState = "online".green;
-        if ("offline" in program) powerState = "offline".inverse;
+        if ("online" in program) powerState = "online";
+        if ("offline" in program) powerState = "offline";
         if ("assigned" in program) assignedState = true;
         if ("unassigned" in program) assignedState = false;
 
@@ -152,14 +152,23 @@ config.init(["apiKey"], function(err, success) {
             }
         });
 
+        var header = ['device_id', 'device_name', 'model_id', 'state']
+        for(var index in header)
+          header[index] = (" " + header[index] + " ").bold.underline.white.inverse //Apply some styling to the header
+
         var table = new Table({
-            head: ['device_id', 'device_name', 'model_id', 'state']
+            head: header
             , colWidths: [20, 30, 14, 10]
         });
 
         filteredDevices.forEach(function(device){
             // Skip devices with null id (can't do anything with them anyways)
             if (!device.id) return;
+
+            if(device.powerstate == "online")
+              device.powerstate = colors.bgGreen.black(" " + device.powerstate + " ")
+            else if(device.powerstate == "offline")
+              device.powerstate = device.powerstate.red
 
             table.push([
                 device.id,
